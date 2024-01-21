@@ -1,0 +1,5 @@
+services:
+  - name: todo
+    env: node
+    buildCommand: npm run build
+    startCommand: npm start
