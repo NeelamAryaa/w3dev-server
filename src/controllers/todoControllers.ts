@@ -2,10 +2,10 @@
 import { Request, Response } from "express";
 import ToDo from "../models/todo";
 
-export const getAllToDos = async (req: Request, res: Response) => {
+export const getAllTodos = async (req: Request, res: Response) => {
   try {
     const todos = await ToDo.find();
-    res.json(todos);
+    res.json(todos.reverse());
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }
@@ -22,6 +22,7 @@ export const addTodo = async (req: Request, res: Response) => {
 };
 
 export const updateTodo = async (req: Request, res: Response) => {
+  console.log(req.body.task);
   try {
     const { id } = req.params;
     const { task } = req.body;
@@ -54,5 +55,3 @@ export const deleteTodo = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
-
-// Implement other CRUD operations (create, update, delete) similarly
